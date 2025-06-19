@@ -3,6 +3,11 @@
 import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation'; 
 import { getOrderInfo, updateOrder } from '@/lib/api';
+
+interface EditPesananProps {
+  orderId: string;
+}
+
 type Order = {
   order_id: string;
   order_name: string;
@@ -14,10 +19,8 @@ type Order = {
   due_date: string;
 };
 
-export default function EditPesanan() {
+export default function EditPesanan({ orderId }: EditPesananProps) {
   const router = useRouter();
-  const params = useParams();
-  const orderId = params.order_id;
 
   const [order, setOrder] = useState<Order | null>(null);
   const [loading, setLoading] = useState(true);
